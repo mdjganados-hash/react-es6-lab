@@ -6,7 +6,7 @@ import viteLogo from '/vite.svg';
 import './App.css';
 
 function App() {
-  // ES6+ examples (run once on mount)
+  // ES6+ examples (run once)
   useEffect(() => {
     const names = ['Alice', 'Bob', 'Charlie'];
     const doubled = names.map(name => name.length * 2);
@@ -18,9 +18,15 @@ function App() {
   }, []);
 
   const users = ['Alice', 'Bob', 'Charlie'];
+  const isLoggedIn = true; // toggle this to see different text
 
   return (
     <div className="App">
+      {/* Conditional Rendering */}
+      <div>
+        {isLoggedIn ? <p>Welcome back!</p> : <p>Please log in</p>}
+      </div>
+
       <h1>User List</h1>
       <UserList users={users} />
 
