@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import UserList from './UserList';
 import Counter from './Counter';
+import UserAPI from './UserAPI';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -17,8 +18,11 @@ function App() {
     console.log('Destructured:', name, age);
   }, []);
 
+  // Static users for UserList
   const users = ['Alice', 'Bob', 'Charlie'];
-  const isLoggedIn = true; // toggle this to see different text
+
+  // Login simulation
+  const isLoggedIn = true; // toggle to false to test conditional rendering
 
   return (
     <div className="App">
@@ -27,12 +31,19 @@ function App() {
         {isLoggedIn ? <p>Welcome back!</p> : <p>Please log in</p>}
       </div>
 
+      {/* Static user list */}
       <h1>User List</h1>
       <UserList users={users} />
 
+      {/* Counter component */}
       <h2>Counter Example</h2>
       <Counter />
 
+      {/* API-fetched user list */}
+      <h2>Users from API</h2>
+      <UserAPI />
+
+      {/* Logos */}
       <div className="logos">
         <a href="https://vite.dev" target="_blank" rel="noopener noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />
