@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import UserList from './UserList';
+import Counter from './Counter';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  // ES6+ examples
+  // ES6+ examples (run once on mount)
   useEffect(() => {
     const names = ['Alice', 'Bob', 'Charlie'];
     const doubled = names.map(name => name.length * 2);
@@ -21,22 +20,20 @@ function App() {
   const users = ['Alice', 'Bob', 'Charlie'];
 
   return (
-    <div>
+    <div className="App">
       <h1>User List</h1>
       <UserList users={users} />
 
-      <div>
-        <a href="https://vite.dev" target="_blank">
+      <h2>Counter Example</h2>
+      <Counter />
+
+      <div className="logos">
+        <a href="https://vite.dev" target="_blank" rel="noopener noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
+        <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
-      </div>
-
-      <div className="card">
-        <button onClick={() => setCount(count + 1)}>count is {count}</button>
-        <p>Edit <code>src/App.jsx</code> and save to test HMR</p>
       </div>
     </div>
   );
