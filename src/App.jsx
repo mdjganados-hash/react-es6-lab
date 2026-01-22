@@ -22,13 +22,13 @@ function App() {
   const users = ['Alice', 'Bob', 'Charlie'];
 
   // Login simulation
-  const isLoggedIn = true; // toggle to false to test conditional rendering
+  const isLoggedIn = false; // toggle to false to test conditional rendering
 
   return (
     <div className="App">
       {/* Conditional Rendering */}
       <div>
-        {isLoggedIn ? <p>Welcome back!</p> : <p>Please log in</p>}
+        {isLoggedIn ? <p>Welcome back!???!!!?!?!?!</p> : <p>Please log in..... lol</p>}
       </div>
 
       {/* Static user list */}
