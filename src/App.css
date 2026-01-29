@@ -1,42 +1,64 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+/* Full-page flex container */
+.App {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;       /* full viewport height */
+  width: 100vw;             /* full viewport width */
+  display: flex;
+  justify-content: center;  /* horizontal center */
+  align-items: center;      /* vertical center */
+  background: #f9fafb;
+  margin: 0;
+  padding: 0;
+}
+
+/* Login form & dashboard card */
+.login-form, .dashboard {
+  width: 350px;
   padding: 2rem;
-  text-align: center;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers content inside the card */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Input fields */
+.login-form input {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-error {
+  border-color: red;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.error-text {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
-.card {
-  padding: 2em;
+/* Buttons */
+button {
+  padding: 10px 15px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
 }
 
-.read-the-docs {
-  color: #888;
+button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Counter inside dashboard */
+.dashboard div {
+  margin-top: 20px;
 }

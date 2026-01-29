@@ -1,57 +1,83 @@
-import { useState, useEffect } from 'react';
-import UserList from './UserList';
-import Counter from './Counter';
-import UserAPI from './UserAPI';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
-  // ES6+ examples (run once)
-  useEffect(() => {
-    const names = ['Alice', 'Bob', 'Charlie'];
-    const doubled = names.map(name => name.length * 2);
-    console.log('Doubled lengths:', doubled);
+  // -------------------------
+  // Login State
+  // -------------------------
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-    const person = { name: 'Alice', age: 25 };
-    const { name, age } = person;
-    console.log('Destructured:', name, age);
-  }, []);
+  // -------------------------
+  // Counter State
+  // -------------------------
+  const [count, setCount] = useState(0);
 
-  // Static users for UserList
-  const users = ['Alice', 'Bob', 'Charlie'];
+  // -------------------------
+  // Login Handlers
+  // -------------------------
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (email === 'admin@skyline.com' && password === '1234') {
+      setIsLoggedIn(true);
+      setError('');
+      setEmail('');
+      setPassword('');
+    } else {
+      setError('Invalid email or password');
+    }
+  };
 
-  // Login simulation
-  const isLoggedIn = false; // toggle to false to test conditional rendering
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
 
+  // -------------------------
+  // App JSX
+  // -------------------------
   return (
     <div className="App">
-      {/* Conditional Rendering */}
-      <div>
-        {isLoggedIn ? <p>Welcome back!???!!!?!?!?!</p> : <p>Please log in..... lol</p>}
-      </div>
 
-      {/* Static user list */}
-      <h1>User List</h1>
-      <UserList users={users} />
+      {/* Conditional Rendering: Login Form or Dashboard */}
+      {isLoggedIn ? (
+        <div className="dashboard">
+          <h2>Welcome! You are logged in 🚀</h2>
+          <button onClick={handleLogout}>Logout</button>
 
-      {/* Counter component */}
-      <h2>Counter Example</h2>
-      <Counter />
+          {/* Counter */}
+          <div style={{ marginTop: '20px' }}>
+            <p>Count: {count}</p>
+            <button onClick={() => setCount(count + 1)}>Increment</button>
+          </div>
+        </div>
+      ) : (
+        <div className="login-form">
+          <h2>Login</h2>
+          <form onSubmit={handleLogin}>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={error ? 'input-error' : ''}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={error ? 'input-error' : ''}
+              required
+            />
+            {error && <p className="error-text">{error}</p>}
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      )}
 
-      {/* API-fetched user list */}
-      <h2>Users from API</h2>
-      <UserAPI />
-
-      {/* Logos */}
-      <div className="logos">
-        <a href="https://vite.dev" target="_blank" rel="noopener noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
     </div>
   );
 }
